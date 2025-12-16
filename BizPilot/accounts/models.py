@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from categories.models import Category
+from industries.models import Industry
 from django_countries.fields import CountryField
 
 """
@@ -16,7 +16,7 @@ class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=20, blank=True)
     country = CountryField(blank=True, null=True)
     company = models.CharField(max_length=100, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    industry = models.ForeignKey(Industry, on_delete=models.SET_NULL, null=True, blank=True)
 
 # Use email as the login identifier
 # Also, stated built in fields would be populated for signup

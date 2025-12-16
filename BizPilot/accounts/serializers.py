@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import CustomUser
-from categories.models import Category
+from industries.models import Industry
 from django_countries.serializer_fields import CountryField
 
 """
@@ -10,15 +10,15 @@ from django_countries.serializer_fields import CountryField
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     country = CountryField(required=False, allow_null=True)
-    category = serializers.PrimaryKeyRelatedField(
-        queryset=Category.objects.all(),
+    industry = serializers.PrimaryKeyRelatedField(
+        queryset=Industry.objects.all(),
         required=False,
         allow_null=True
     )
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'first_name', 'last_name', 'email', 'password', 'phone_number', 'country', 'company', 'category']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password', 'phone_number', 'country', 'company', 'industry']
         extra_kwargs = {'password': {'write_only': True}}
     
 
